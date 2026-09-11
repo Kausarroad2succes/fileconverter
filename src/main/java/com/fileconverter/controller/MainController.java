@@ -1,26 +1,46 @@
 package com.fileconverter.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 
 public class MainController {
 
     @FXML
-    private StackPane contentArea;
-
-    @FXML
-    private void showPdfTools() {
-        contentArea.getChildren().setAll(new Label("PDF Tools screen coming soon"));
+    private void openPDFMerger() {
+        System.out.println("PDF Merger clicked");
     }
 
     @FXML
-    private void showImageTools() {
-        contentArea.getChildren().setAll(new Label("Image Tools screen coming soon"));
+    private void openSplitPdf() {
+        System.out.println("Split PDF clicked");
     }
 
     @FXML
-    private void showAudioTools() {
-        contentArea.getChildren().setAll(new Label("Audio Tools screen coming soon"));
+    private void openImageToPdf() {
+        System.out.println("Image to PDF clicked");
+    }
+
+    @FXML
+    private void openJpgToPng() {
+        System.out.println("JPG to PNG clicked");
+    }
+
+    @FXML
+    private void openResizeImage() {
+        System.out.println("Resize Image clicked");
+    }
+
+    @FXML
+    private void openPdfToImage() {
+        System.out.println("PDF to Image clicked");
+    }
+
+    @FXML
+    private void openCompressImage() {
+        System.out.println("Compress Image clicked");
+    }
+
+    @FXML
+    private void openRotateFlip() {
+        System.out.println("Rotate/Flip clicked");
     }
 }
