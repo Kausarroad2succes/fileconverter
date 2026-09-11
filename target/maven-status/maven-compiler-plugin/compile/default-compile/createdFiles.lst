@@ -1,3 +1,4 @@
+com/fileconverter/service/PdfService.class
 com/fileconverter/controller/MainController.class
 com/fileconverter/controller/PdfMergerController.class
 com/fileconverter/controller/WelcomeController.class
