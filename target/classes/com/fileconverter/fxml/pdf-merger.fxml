@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="12.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.PdfMergerController">
+    <children>
+        <Label text="PDF Merger">
+            <font>
+                <Font name="American Typewriter Bold" size="20.0" />
+            </font>
+        </Label>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleAddFiles" text="Add File">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+                <Button mnemonicParsing="false" onAction="#handleRemoveSelected" text="Remove Selected File">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+        <ListView fx:id="fileListView" prefHeight="200.0" prefWidth="200.0" />
+        <HBox alignment="CENTER" layoutX="30.0" layoutY="68.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <children>
+                <Label fx:id="outputPathLabel" text="Output Path Is Not Selected" />
+                <Button mnemonicParsing="false" onAction="#handleChooseOutput" text="Merge As">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Button>
+            </children>
+        </HBox>
+        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleMerge" style="-fx-padding: 8 20;" text="Merge">
+            <font>
+                <Font size="14.0" />
+            </font>
+        </Button>
+        <Label fx:id="statusLabel" />
+    </children>
+</VBox>
