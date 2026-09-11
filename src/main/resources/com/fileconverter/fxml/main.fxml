@@ -1,19 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.fileconverter.controller.MainController">
-    <left>
-        <VBox spacing="10" style="-fx-padding: 15; -fx-background-color: #2b2b2b;" prefWidth="180">
-            <Button text="PDF Tools" maxWidth="Infinity" onAction="#showPdfTools" />
-            <Button text="Image Tools" maxWidth="Infinity" onAction="#showImageTools" />
-            <Button text="Audio Tools" maxWidth="Infinity" onAction="#showAudioTools" />
-        </VBox>
-    </left>
-    <center>
-        <StackPane fx:id="contentArea" style="-fx-padding: 20;" />
-    </center>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.MainController">
+   <top>
+      <VBox alignment="CENTER" maxHeight="90.0" prefHeight="200.0" prefWidth="100.0" spacing="12.0" style="-fx-background-color: #2b2b2b; -fx-padding: 20;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="File Converter" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font name="American Typewriter Bold" size="24.0" />
+               </font>
+            </Label>
+            <Label text="Choose a tool to get started" textAlignment="JUSTIFY" textFill="#ffffffbf">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <content>
+            <TilePane alignment="TOP_CENTER" hgap="16.0" prefHeight="213.0" prefWidth="599.0" style="-fx-padding: 20;" vgap="16.0">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openPDFMerger" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="📄">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="PDF Merger" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openSplitPdf" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="✂️">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Split PDF" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openImageToPdf" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="🖼️">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Image to PDF" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openJpgToPng" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="🔄">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="JPG ↔ PNG" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openResizeImage" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="📐">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Image Resize" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openPdfToImage" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="🗂️">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="PDF to Image" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openCompressImage" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="🗜️">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Compress Image" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="100.0" maxWidth="140.0" onMouseClicked="#openRotateFlip" prefHeight="200.0" prefWidth="100.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 10; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 2);">
+                     <children>
+                        <Label text="🔃">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label text="Rotate/Flip" />
+                     </children>
+                  </VBox>
+               </children>
+            </TilePane>
+         </content>
+      </ScrollPane>
+   </center>
 </BorderPane>
