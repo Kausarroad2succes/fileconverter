@@ -2,6 +2,7 @@ com/fileconverter/controller/LoginController.class
 com/fileconverter/controller/PdfMergerController$1.class
 com/fileconverter/controller/MainController.class
 com/fileconverter/Main.class
+com/fileconverter/controller/PdfMergerController$2.class
 com/fileconverter/service/PdfService.class
 com/fileconverter/controller/PdfMergerController.class
 com/fileconverter/controller/WelcomeController.class

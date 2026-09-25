@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ProgressBar?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.PdfMergerController">
 
@@ -74,8 +75,9 @@
                         <Label styleClass="step-title" text="Output:" />
                         <Label fx:id="outputPathLabel" styleClass="output-label" text="No output selected" />
                         <VBox HBox.hgrow="ALWAYS" />
+                        <ProgressBar fx:id="mergeProgressBar" prefWidth="150.0" visible="false" managed="false" />
                         <Button onAction="#handleChooseOutput" styleClass="action-button" text="Choose Output" />
-                        <Button onAction="#handleMerge" styleClass="merge-button" text="Merge PDF →" />
+                        <Button fx:id="mergeButton" onAction="#handleMerge" styleClass="merge-button" text="Merge PDF →" />
                     </children>
                 </HBox>
 

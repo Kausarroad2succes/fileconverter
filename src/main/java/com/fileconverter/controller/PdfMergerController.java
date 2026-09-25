@@ -1,13 +1,16 @@
 package com.fileconverter.controller;
 
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -35,6 +38,12 @@ public class PdfMergerController {
 
     @FXML
     private VBox dropZone;
+
+    @FXML
+    private Button mergeButton;
+
+    @FXML
+    private ProgressBar mergeProgressBar;
 
     private final List<File> selectedFiles = new ArrayList<>();
     private File outputFile;
@@ -158,16 +167,52 @@ public class PdfMergerController {
     private void handleMerge() {
         if (selectedFiles.isEmpty()) {
             statusLabel.setText("Add at least one file");
-        } else if (outputFile == null) {
-            statusLabel.setText("Select the output file");
-        } else {
-            try {
-                PdfService.mergePdfs(selectedFiles, outputFile);
-                statusLabel.setText("Merge successful!");
-            } catch (IOException e) {
-                statusLabel.setText("Merge failed: " + e.getMessage());
-            }
+            return;
         }
+        if (outputFile == null) {
+            statusLabel.setText("Select the output file");
+            return;
+        }
+
+        // Snapshot state so the background thread never touches the live,
+        // FX-thread-mutable selectedFiles list while merging.
+        List<File> filesToMerge = new ArrayList<>(selectedFiles);
+        File targetFile = outputFile;
+
+        Task<Void> mergeTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                PdfService.mergePdfs(filesToMerge, targetFile);
+                return null;
+            }
+        };
+
+        mergeButton.setDisable(true);
+        mergeProgressBar.setVisible(true);
+        mergeProgressBar.setManaged(true);
+        mergeProgressBar.progressProperty().bind(mergeTask.progressProperty());
+        statusLabel.setText("Merging...");
+
+        mergeTask.setOnSucceeded(e -> {
+            mergeProgressBar.progressProperty().unbind();
+            mergeProgressBar.setVisible(false);
+            mergeProgressBar.setManaged(false);
+            mergeButton.setDisable(false);
+            statusLabel.setText("Merge successful!");
+        });
+
+        mergeTask.setOnFailed(e -> {
+            mergeProgressBar.progressProperty().unbind();
+            mergeProgressBar.setVisible(false);
+            mergeProgressBar.setManaged(false);
+            mergeButton.setDisable(false);
+            Throwable ex = mergeTask.getException();
+            statusLabel.setText("Merge failed: " + (ex != null ? ex.getMessage() : "unknown error"));
+        });
+
+        Thread thread = new Thread(mergeTask, "pdf-merge-thread");
+        thread.setDaemon(true);
+        thread.start();
     }
 
     @FXML
