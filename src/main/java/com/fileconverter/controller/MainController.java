@@ -1,5 +1,6 @@
 package com.fileconverter.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,9 +13,10 @@ import java.io.IOException;
 
 public class MainController {
 
+    // ---- Card grid handlers (MouseEvent) ----
     @FXML
     private void openPDFMerger(MouseEvent event) {
-        switchScene(event, "/com/fileconverter/fxml/pdf-merger.fxml", "PDF Merger");
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-merger.fxml", "PDF Merger");
     }
 
     @FXML
@@ -52,16 +54,54 @@ public class MainController {
         System.out.println("Rotate/Flip clicked");
     }
 
-    private void switchScene(MouseEvent event, String fxmlPath, String title) {
+    // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
+    @FXML
+    private void openPDFMergerFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-merger.fxml", "PDF Merger");
+    }
+
+    @FXML
+    private void openSplitPdfFromButton() { openSplitPdf(); }
+
+    @FXML
+    private void openImageToPdfFromButton() { openImageToPdf(); }
+
+    @FXML
+    private void openJpgToPngFromButton() { openJpgToPng(); }
+
+    @FXML
+    private void openResizeImageFromButton() { openResizeImage(); }
+
+    @FXML
+    private void openPdfToImageFromButton() { openPdfToImage(); }
+
+    @FXML
+    private void openCompressImageFromButton() { openCompressImage(); }
+
+    @FXML
+    private void openRotateFlipFromButton() { openRotateFlip(); }
+
+    // ---- Shared scene-switch logic, now takes a plain source object ----
+    private void switchScene(Object source, String fxmlPath, String title) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
-            Node source = (Node) event.getSource();
-            Stage stage = (Stage) source.getScene().getWindow();
+            Stage stage = (Stage) ((Node) source).getScene().getWindow();
+//            boolean wasMaximized = stage.isMaximized();
 
-            Scene scene = new Scene(root, 700, 500);
-            stage.setScene(scene);
+            Scene currentScene = stage.getScene();
+
+            currentScene.setRoot(root);
+            stage.setTitle(title);
+
+          //  Scene scene = new Scene(root,stage.getWidth(),stage.getHeight());
+
+//            if (wasMaximized) {
+//                stage.setMaximized(false); // force a toggle
+//                stage.setMaximized(true);
+//            }
+           // stage.setScene(scene);
             stage.setTitle(title);
 
         } catch (IOException e) {

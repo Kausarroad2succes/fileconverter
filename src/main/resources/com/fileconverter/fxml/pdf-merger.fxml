@@ -4,48 +4,86 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.PdfMergerController">
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="12.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.PdfMergerController">
-    <children>
-        <Label text="PDF Merger">
-            <font>
-                <Font name="American Typewriter Bold" size="20.0" />
-            </font>
-        </Label>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+    <!-- LEFT SIDEBAR (same shape as main.fxml) -->
+    <left>
+        <VBox prefWidth="220.0" spacing="4.0" styleClass="sidebar">
             <children>
-                <Button mnemonicParsing="false" onAction="#handleAddFiles" text="Add File">
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#handleRemoveSelected" text="Remove Selected File">
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
+                <Label styleClass="sidebar-title" text="File Converter">
+                    <VBox.margin><Insets bottom="20.0" left="10.0" top="10.0" /></VBox.margin>
+                </Label>
+                <Button maxWidth="Infinity" styleClass="sidebar-item, sidebar-item-active" text="📄  PDF Merger" />
+                <Button maxWidth="Infinity" onAction="#handleBackFromMerge" styleClass="sidebar-item" text="✂️  Split PDF" />
+                <Button maxWidth="Infinity" onAction="#handleBackFromMerge" styleClass="sidebar-item" text="🖼️  Image to PDF" />
+                <VBox VBox.vgrow="ALWAYS" />
+                <Button maxWidth="Infinity" styleClass="sidebar-item" text="⚙️  Settings">
+                    <VBox.margin><Insets bottom="10.0" /></VBox.margin>
                 </Button>
             </children>
-        </HBox>
-        <ListView fx:id="fileListView" prefHeight="200.0" prefWidth="200.0" />
-        <HBox alignment="CENTER" layoutX="30.0" layoutY="68.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+        </VBox>
+    </left>
+
+    <!-- CENTER CONTENT -->
+    <center>
+        <VBox spacing="20.0" style="-fx-padding: 24;">
             <children>
-                <Label fx:id="outputPathLabel" text="Output Path Is Not Selected" />
-                <Button mnemonicParsing="false" onAction="#handleChooseOutput" text="Merge As">
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </Button>
+
+                <!-- Header banner -->
+                <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="merger-banner">
+                    <children>
+                        <StackPane styleClass="merger-icon"><children><Label style="-fx-font-size: 26px;" text="📄" /></children></StackPane>
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label styleClass="page-title" text="PDF Merger" />
+                                <Label styleClass="page-subtitle" text="Combine multiple PDF files into one document." />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Drop / add zone -->
+                <VBox fx:id="dropZone" alignment="CENTER" prefHeight="140.0" spacing="8.0" styleClass="drop-zone">
+                    <children>
+                        <Label style="-fx-font-size: 26px;" text="📤" />
+                        <Label styleClass="drop-zone-title" text="Add PDF files to merge" />
+                        <Button onAction="#handleAddFiles" styleClass="merge-button" text="Choose Files" />
+                        <Label styleClass="step-desc" text="PDF only" />
+                    </children>
+                </VBox>
+
+                <!-- File list -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label styleClass="section-title" text="Selected Files" />
+                        <VBox HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handleRemoveSelected" styleClass="action-button" text="Remove Selected" />
+                    </children>
+                </HBox>
+
+                <ListView fx:id="fileListView" prefHeight="220.0" styleClass="file-list" />
+
+                <!-- Output row -->
+                <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="panel-box">
+                    <children>
+                        <Label styleClass="step-title" text="Output:" />
+                        <Label fx:id="outputPathLabel" styleClass="output-label" text="No output selected" />
+                        <VBox HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handleChooseOutput" styleClass="action-button" text="Choose Output" />
+                        <Button onAction="#handleMerge" styleClass="merge-button" text="Merge PDF →" />
+                    </children>
+                </HBox>
+
+                <Label fx:id="statusLabel" styleClass="status-label" />
+
+                <Button fx:id="backButton" onAction="#handleBackFromMerge" styleClass="action-button" text="← Back to Home" />
+
             </children>
-        </HBox>
-        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleMerge" style="-fx-padding: 8 20;" text="Merge">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
-        <Label fx:id="statusLabel" />
-    </children>
-</VBox>
+        </VBox>
+    </center>
+</BorderPane>

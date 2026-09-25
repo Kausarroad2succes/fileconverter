@@ -1,0 +1,63 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #6a5af9, #d66efd);
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.title-label {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 4, 0, 0, 2);
+}
+
+.action-button {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #6a5af9;
+    -fx-border-color: transparent;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 8 18;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 4, 0, 0, 2);
+}
+
+.action-button:hover {
+    -fx-background-color: #f0eaff;
+}
+
+.merge-button {
+    -fx-background-color: linear-gradient(to right, #ff6a88, #ff9a6a);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 14 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 6, 0, 0, 3);
+}
+
+.merge-button:hover {
+    -fx-background-color: linear-gradient(to right, #ff8aa2, #ffb088);
+}
+
+.file-list {
+    -fx-background-color: rgba(255,255,255,0.9);
+    -fx-background-radius: 12;
+    -fx-border-color: transparent;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 6, 0, 0, 3);
+}
+
+.output-label {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+.status-label {
+    -fx-text-fill: #d9fff0;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
