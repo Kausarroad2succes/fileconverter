@@ -24,35 +24,7 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-splitter.fxml", "Split PDF");
     }
 
-    @FXML
-    private void openImageToPdf() {
-        System.out.println("Image to PDF clicked");
-    }
 
-    @FXML
-    private void openJpgToPng() {
-        System.out.println("JPG to PNG clicked");
-    }
-
-    @FXML
-    private void openResizeImage() {
-        System.out.println("Resize Image clicked");
-    }
-
-    @FXML
-    private void openPdfToImage() {
-        System.out.println("PDF to Image clicked");
-    }
-
-    @FXML
-    private void openCompressImage() {
-        System.out.println("Compress Image clicked");
-    }
-
-    @FXML
-    private void openRotateFlip() {
-        System.out.println("Rotate/Flip clicked");
-    }
 
     // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
     @FXML
@@ -65,23 +37,7 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-splitter.fxml", "Split PDF");
     }
 
-    @FXML
-    private void openImageToPdfFromButton() { openImageToPdf(); }
 
-    @FXML
-    private void openJpgToPngFromButton() { openJpgToPng(); }
-
-    @FXML
-    private void openResizeImageFromButton() { openResizeImage(); }
-
-    @FXML
-    private void openPdfToImageFromButton() { openPdfToImage(); }
-
-    @FXML
-    private void openCompressImageFromButton() { openCompressImage(); }
-
-    @FXML
-    private void openRotateFlipFromButton() { openRotateFlip(); }
 
     // ---- Shared scene-switch logic, now takes a plain source object ----
     private void switchScene(Object source, String fxmlPath, String title) {
