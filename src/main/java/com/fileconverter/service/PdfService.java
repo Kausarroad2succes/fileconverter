@@ -98,5 +98,29 @@ public class PdfService {
         }
     }
 
+    public static List<File> pdfToImages(File sourceFile, String format, int dpi, File outputFolder) throws IOException {
+        List<File> outputFiles = new ArrayList<>();
+        String baseName = stripExtension(sourceFile.getName());
+        String writerFormat = format.equalsIgnoreCase("jpg") ? "jpg" : "png";
+
+        try (PDDocument doc = Loader.loadPDF(sourceFile)) {
+            PDFRenderer renderer = new PDFRenderer(doc);
+            int totalPages = doc.getNumberOfPages();
+
+            for (int i = 0; i < totalPages; i++) {
+                BufferedImage image = renderer.renderImageWithDPI(i, dpi, ImageType.RGB);
+
+                File outFile = new File(outputFolder, baseName + "_page" + (i + 1) + "." + writerFormat);
+                if (!ImageIO.write(image, writerFormat, outFile)) {
+                    throw new IOException("No writer available for format: " + writerFormat);
+                }
+
+                outputFiles.add(outFile);
+            }
+        }
+
+        return outputFiles;
+    }
+
 
 }

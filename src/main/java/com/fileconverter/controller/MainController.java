@@ -28,6 +28,11 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/image-to-pdf.fxml", "Image to PDF");
     }
 
+    @FXML
+    private void openPdfToImage(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-image.fxml", "PDF to Image");
+    }
+
 
 
     // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
@@ -45,6 +50,16 @@ public class MainController {
     private void openImageToPdfFromButton(ActionEvent event) {
         switchScene(event.getSource(), "/com/fileconverter/fxml/image-to-pdf.fxml", "Image to PDF");
     }
+
+    @FXML
+    private void openPdfToImageFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-image.fxml", "PDF to Image");
+    }
+
+
+
+
+
 
     // ---- Shared scene-switch logic, now takes a plain source object ----
     private void switchScene(Object source, String fxmlPath, String title) {
