@@ -33,6 +33,11 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-image.fxml", "PDF to Image");
     }
 
+    @FXML
+    private void openJpgToPng(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/jpg-png-converter.fxml", "JPG ↔ PNG Converter");
+    }
+
 
 
     // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
@@ -57,6 +62,11 @@ public class MainController {
     }
 
 
+
+    @FXML
+    private void openJpgToPngFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/jpg-png-converter.fxml", "JPG ↔ PNG Converter");
+    }
 
 
 
