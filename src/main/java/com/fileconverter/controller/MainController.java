@@ -23,6 +23,10 @@ public class MainController {
     private void openSplitPdf(MouseEvent event) {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-splitter.fxml", "Split PDF");
     }
+    @FXML
+    private void openImageToPdf(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/image-to-pdf.fxml", "Image to PDF");
+    }
 
 
 
@@ -37,7 +41,10 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-splitter.fxml", "Split PDF");
     }
 
-
+    @FXML
+    private void openImageToPdfFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/image-to-pdf.fxml", "Image to PDF");
+    }
 
     // ---- Shared scene-switch logic, now takes a plain source object ----
     private void switchScene(Object source, String fxmlPath, String title) {

@@ -66,5 +66,37 @@ public class PdfService {
         return outputFiles;
     }
 
+    public static void imagesToPdf(List<File> imageFiles, File outputFile) throws IOException {
+        try (PDDocument doc = new PDDocument()) {
+            for (File imageFile : imageFiles) {
+                PDImageXObject image = PDImageXObject.createFromFile(imageFile.getAbsolutePath(), doc);
+
+                float imgWidth = image.getWidth();
+                float imgHeight = image.getHeight();
+
+                PDRectangle pageSize = imgWidth > imgHeight
+                        ? new PDRectangle(Math.max(imgWidth, PDRectangle.A4.getHeight()), Math.max(imgHeight, PDRectangle.A4.getWidth()))
+                        : PDRectangle.A4;
+
+                float pageWidth = pageSize.getWidth();
+                float pageHeight = pageSize.getHeight();
+                float scale = Math.min(pageWidth / imgWidth, pageHeight / imgHeight);
+                float drawWidth = imgWidth * scale;
+                float drawHeight = imgHeight * scale;
+                float x = (pageWidth - drawWidth) / 2f;
+                float y = (pageHeight - drawHeight) / 2f;
+
+                PDPage page = new PDPage(pageSize);
+                doc.addPage(page);
+
+                try (PDPageContentStream contentStream = new PDPageContentStream(doc, page)) {
+                    contentStream.drawImage(image, x, y, drawWidth, drawHeight);
+                }
+            }
+
+            doc.save(outputFile);
+        }
+    }
+
 
 }
