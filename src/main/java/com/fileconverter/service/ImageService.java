@@ -62,5 +62,48 @@ public class ImageService {
      * If maintainAspectRatio is false, both targetWidth and targetHeight are used exactly.
      * Output files keep their original format and filename, written into outputFolder.
      */
+    public static List<File> resizeImages(List<File> imageFiles, int targetWidth, int targetHeight,
+                                          boolean maintainAspectRatio, File outputFolder) throws IOException {
+        List<File> outputFiles = new ArrayList<>();
 
+        for (File imageFile : imageFiles) {
+            BufferedImage original = ImageIO.read(imageFile);
+            if (original == null) {
+                throw new IOException("Could not read image: " + imageFile.getName());
+            }
+
+            int newWidth = targetWidth;
+            int newHeight = targetHeight;
+
+            if (maintainAspectRatio) {
+                double aspectRatio = (double) original.getHeight() / original.getWidth();
+                newHeight = (int) Math.round(targetWidth * aspectRatio);
+            }
+
+            BufferedImage resized = new BufferedImage(newWidth, newHeight, original.getType() == 0
+                    ? BufferedImage.TYPE_INT_ARGB : original.getType());
+            java.awt.Graphics2D g = resized.createGraphics();
+            g.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION,
+                    java.awt.RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.drawImage(original, 0, 0, newWidth, newHeight, null);
+            g.dispose();
+
+            String format = getExtension(imageFile.getName());
+            File outFile = new File(outputFolder, imageFile.getName());
+
+            String writerFormat = format.equalsIgnoreCase("jpg") || format.equalsIgnoreCase("jpeg") ? "jpg" : "png";
+            if (!ImageIO.write(resized, writerFormat, outFile)) {
+                throw new IOException("No writer available for format: " + format);
+            }
+
+            outputFiles.add(outFile);
+        }
+
+        return outputFiles;
+    }
+
+    private static String getExtension(String filename) {
+        int dot = filename.lastIndexOf('.');
+        return dot > 0 ? filename.substring(dot + 1) : "png";
+    }
 }

@@ -38,6 +38,13 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/jpg-png-converter.fxml", "JPG ↔ PNG Converter");
     }
 
+    @FXML
+    private void openResizeImage(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/image-resize.fxml", "Image Resize");
+    }
+
+
+
 
 
     // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
@@ -67,6 +74,12 @@ public class MainController {
     private void openJpgToPngFromButton(ActionEvent event) {
         switchScene(event.getSource(), "/com/fileconverter/fxml/jpg-png-converter.fxml", "JPG ↔ PNG Converter");
     }
+
+    @FXML
+    private void openResizeImageFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/image-resize.fxml", "Image Resize");
+    }
+
 
 
 

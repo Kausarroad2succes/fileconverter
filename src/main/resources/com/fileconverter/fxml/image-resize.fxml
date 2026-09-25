@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane  prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.ImageResizeController">
+
+    <left>
+        <VBox prefWidth="220.0" spacing="4.0" styleClass="sidebar">
+            <children>
+                <Label styleClass="sidebar-title" text="File Converter">
+                    <VBox.margin><Insets bottom="20.0" left="10.0" top="10.0" /></VBox.margin>
+                </Label>
+                <Button maxWidth="Infinity" onAction="#handleBackFromResize" styleClass="sidebar-item" text="📄  PDF Merger" />
+                <Button maxWidth="Infinity" onAction="#handleBackFromResize" styleClass="sidebar-item" text="✂️  Split PDF" />
+                <Button maxWidth="Infinity" onAction="#handleBackFromResize" styleClass="sidebar-item" text="🖼️  Image to PDF" />
+                <Button maxWidth="Infinity" onAction="#handleBackFromResize" styleClass="sidebar-item" text="🔄  JPG ↔ PNG" />
+                <Button maxWidth="Infinity" styleClass="sidebar-item, sidebar-item-active" text="📐  Image Resize" />
+                <VBox VBox.vgrow="ALWAYS" />
+                <Button maxWidth="Infinity" styleClass="sidebar-item" text="⚙️  Settings">
+                    <VBox.margin><Insets bottom="10.0" /></VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="20.0" style="-fx-padding: 24;">
+            <children>
+
+                <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="merger-banner">
+                    <children>
+                        <StackPane styleClass="merger-icon"><children><Label style="-fx-font-size: 26px;" text="📐" /></children></StackPane>
+                        <VBox spacing="4.0">
+                            <children>
+                                <Label styleClass="page-title" text="Image Resize" />
+                                <Label styleClass="page-subtitle" text="Resize images to exact dimensions." />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Drop / add zone -->
+                <VBox fx:id="dropZone" alignment="CENTER" prefHeight="140.0" spacing="8.0" styleClass="drop-zone">
+                    <children>
+                        <Label style="-fx-font-size: 26px;" text="📤" />
+                        <Label styleClass="drop-zone-title" text="Add images to resize" />
+                        <Button onAction="#handleAddFiles" styleClass="merge-button" text="Choose Files" />
+                        <Label styleClass="step-desc" text="JPG, JPEG, PNG" />
+                    </children>
+                </VBox>
+
+                <!-- File list -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label styleClass="section-title" text="Selected Images" />
+                        <VBox HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handleRemoveSelected" styleClass="action-button" text="Remove Selected" />
+                    </children>
+                </HBox>
+
+                <ListView fx:id="fileListView" prefHeight="160.0" styleClass="file-list" />
+
+                <!-- Dimensions -->
+                <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="panel-box">
+                    <children>
+                        <Label styleClass="step-title" text="Width:" />
+                        <TextField fx:id="widthField" promptText="e.g. 800" prefWidth="90.0" />
+                        <Label styleClass="step-title" text="Height:" />
+                        <TextField fx:id="heightField" promptText="e.g. 600" prefWidth="90.0" />
+                        <CheckBox fx:id="maintainAspectCheckBox" selected="true" text="Maintain aspect ratio" />
+                    </children>
+                </HBox>
+
+                <!-- Output row -->
+                <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="panel-box">
+                    <children>
+                        <Label styleClass="step-title" text="Output folder:" />
+                        <Label fx:id="outputFolderLabel" styleClass="output-label" text="No folder selected" />
+                        <VBox HBox.hgrow="ALWAYS" />
+                        <ProgressBar fx:id="resizeProgressBar" prefWidth="150.0" visible="false" managed="false" />
+                        <Button onAction="#handleChooseOutputFolder" styleClass="action-button" text="Choose Folder" />
+                        <Button fx:id="resizeButton" onAction="#handleResize" styleClass="merge-button" text="Resize →" />
+                    </children>
+                </HBox>
+
+                <Label fx:id="statusLabel" styleClass="status-label" />
+
+                <Button fx:id="backButton" onAction="#handleBackFromResize" styleClass="action-button" text="← Back to Home" />
+
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

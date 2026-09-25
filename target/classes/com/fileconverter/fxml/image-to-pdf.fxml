@@ -4,24 +4,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ProgressBar?>
 
-<BorderPane  prefHeight="650.0" prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.PdfMergerController">
+<BorderPane prefHeight="650.0" prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.ImageToPdfController">
 
-    <!-- LEFT SIDEBAR (same shape as main.fxml) -->
     <left>
         <VBox prefWidth="220.0" spacing="4.0" styleClass="sidebar">
             <children>
                 <Label styleClass="sidebar-title" text="File Converter">
                     <VBox.margin><Insets bottom="20.0" left="10.0" top="10.0" /></VBox.margin>
                 </Label>
-                <Button maxWidth="Infinity" styleClass="sidebar-item, sidebar-item-active" text="📄  PDF Merger" />
-                <Button maxWidth="Infinity" onAction="#handleBackFromMerge" styleClass="sidebar-item" text="✂️  Split PDF" />
-                <Button maxWidth="Infinity" onAction="#handleBackFromMerge" styleClass="sidebar-item" text="🖼️  Image to PDF" />
+                <Button maxWidth="Infinity" onAction="#handleBackFromImageToPdf" styleClass="sidebar-item" text="📄  PDF Merger" />
+                <Button maxWidth="Infinity" onAction="#handleBackFromImageToPdf" styleClass="sidebar-item" text="✂️  Split PDF" />
+                <Button maxWidth="Infinity" styleClass="sidebar-item, sidebar-item-active" text="🖼️  Image to PDF" />
                 <VBox VBox.vgrow="ALWAYS" />
                 <Button maxWidth="Infinity" styleClass="sidebar-item" text="⚙️  Settings">
                     <VBox.margin><Insets bottom="10.0" /></VBox.margin>
@@ -30,19 +29,17 @@
         </VBox>
     </left>
 
-    <!-- CENTER CONTENT -->
     <center>
         <VBox spacing="20.0" style="-fx-padding: 24;">
             <children>
 
-                <!-- Header banner -->
                 <HBox alignment="CENTER_LEFT" spacing="16.0" styleClass="merger-banner">
                     <children>
-                        <StackPane styleClass="merger-icon"><children><Label style="-fx-font-size: 26px;" text="📄" /></children></StackPane>
+                        <StackPane styleClass="merger-icon"><children><Label style="-fx-font-size: 26px;" text="🖼️" /></children></StackPane>
                         <VBox spacing="4.0">
                             <children>
-                                <Label styleClass="page-title" text="PDF Merger" />
-                                <Label styleClass="page-subtitle" text="Combine multiple PDF files into one document." />
+                                <Label styleClass="page-title" text="Image to PDF" />
+                                <Label styleClass="page-subtitle" text="Combine JPG/PNG images into one PDF document." />
                             </children>
                         </VBox>
                     </children>
@@ -52,16 +49,16 @@
                 <VBox fx:id="dropZone" alignment="CENTER" prefHeight="140.0" spacing="8.0" styleClass="drop-zone">
                     <children>
                         <Label style="-fx-font-size: 26px;" text="📤" />
-                        <Label styleClass="drop-zone-title" text="Add PDF files to merge" />
+                        <Label styleClass="drop-zone-title" text="Add images to convert" />
                         <Button onAction="#handleAddFiles" styleClass="merge-button" text="Choose Files" />
-                        <Label styleClass="step-desc" text="PDF only" />
+                        <Label styleClass="step-desc" text="JPG, JPEG, PNG only" />
                     </children>
                 </VBox>
 
                 <!-- File list -->
                 <HBox alignment="CENTER_LEFT" spacing="10.0">
                     <children>
-                        <Label styleClass="section-title" text="Selected Files" />
+                        <Label styleClass="section-title" text="Selected Images" />
                         <VBox HBox.hgrow="ALWAYS" />
                         <Button onAction="#handleRemoveSelected" styleClass="action-button" text="Remove Selected" />
                     </children>
@@ -75,15 +72,15 @@
                         <Label styleClass="step-title" text="Output:" />
                         <Label fx:id="outputPathLabel" styleClass="output-label" text="No output selected" />
                         <VBox HBox.hgrow="ALWAYS" />
-                        <ProgressBar fx:id="mergeProgressBar" prefWidth="150.0" visible="false" managed="false" />
+                        <ProgressBar fx:id="convertProgressBar" prefWidth="150.0" visible="false" managed="false" />
                         <Button onAction="#handleChooseOutput" styleClass="action-button" text="Choose Output" />
-                        <Button fx:id="mergeButton" onAction="#handleMerge" styleClass="merge-button" text="Merge PDF →" />
+                        <Button fx:id="convertButton" onAction="#handleConvert" styleClass="merge-button" text="Convert →" />
                     </children>
                 </HBox>
 
                 <Label fx:id="statusLabel" styleClass="status-label" />
 
-                <Button fx:id="backButton" onAction="#handleBackFromMerge" styleClass="action-button" text="← Back to Home" />
+                <Button fx:id="backButton" onAction="#handleBackFromImageToPdf" styleClass="action-button" text="← Back to Home" />
 
             </children>
         </VBox>
