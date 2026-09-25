@@ -20,8 +20,8 @@ public class MainController {
     }
 
     @FXML
-    private void openSplitPdf() {
-        System.out.println("Split PDF clicked");
+    private void openSplitPdf(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-splitter.fxml", "Split PDF");
     }
 
     @FXML
@@ -61,7 +61,9 @@ public class MainController {
     }
 
     @FXML
-    private void openSplitPdfFromButton() { openSplitPdf(); }
+    private void openSplitPdfFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-splitter.fxml", "Split PDF");
+    }
 
     @FXML
     private void openImageToPdfFromButton() { openImageToPdf(); }
@@ -88,20 +90,10 @@ public class MainController {
             Parent root = loader.load();
 
             Stage stage = (Stage) ((Node) source).getScene().getWindow();
-//            boolean wasMaximized = stage.isMaximized();
 
             Scene currentScene = stage.getScene();
 
             currentScene.setRoot(root);
-            stage.setTitle(title);
-
-          //  Scene scene = new Scene(root,stage.getWidth(),stage.getHeight());
-
-//            if (wasMaximized) {
-//                stage.setMaximized(false); // force a toggle
-//                stage.setMaximized(true);
-//            }
-           // stage.setScene(scene);
             stage.setTitle(title);
 
         } catch (IOException e) {
