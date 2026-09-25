@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ProgressBar?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.PdfMergerController">
+<BorderPane  prefHeight="650.0" prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.PdfMergerController">
 
     <!-- LEFT SIDEBAR (same shape as main.fxml) -->
     <left>
