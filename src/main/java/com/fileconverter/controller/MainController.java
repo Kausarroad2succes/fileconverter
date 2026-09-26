@@ -45,6 +45,16 @@ public class MainController {
 
 
 
+    @FXML
+    private void openCompressImage() {
+        System.out.println("Compress Image clicked");
+    }
+
+    @FXML
+    private void openRearrangePdfPage(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-rearrange.fxml", "Rearrange PDF Pages");
+    }
+
 
 
     // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
@@ -81,7 +91,14 @@ public class MainController {
     }
 
 
+    @FXML
+    private void openCompressImageFromButton() { openCompressImage(); }
 
+
+    @FXML
+    private void openRearrangePdfPageFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-rearrange.fxml", "Rearrange PDF Pages");
+    }
 
 
     // ---- Shared scene-switch logic, now takes a plain source object ----

@@ -122,5 +122,30 @@ public class PdfService {
         return outputFiles;
     }
 
+    public static List<BufferedImage> renderPageThumbnails(File sourceFile, int dpi) throws IOException {
+        List<BufferedImage> thumbnails = new ArrayList<>();
+        try (PDDocument doc = Loader.loadPDF(sourceFile)) {
+            PDFRenderer renderer = new PDFRenderer(doc);
+            for (int i = 0; i < doc.getNumberOfPages(); i++) {
+                thumbnails.add(renderer.renderImageWithDPI(i, dpi, ImageType.RGB));
+            }
+        }
+        return thumbnails;
+    }
 
+    public static void reorderPages(File sourceFile, List<Integer> newPageOrder, File outputFile) throws IOException {
+        try (PDDocument sourceDoc = Loader.loadPDF(sourceFile);
+             PDDocument outputDoc = new PDDocument()) {
+
+            int totalPages = sourceDoc.getNumberOfPages();
+            for (int originalIndex : newPageOrder) {
+                if (originalIndex < 0 || originalIndex >= totalPages) {
+                    throw new IllegalArgumentException("Page index " + originalIndex + " is out of range");
+                }
+                outputDoc.importPage(sourceDoc.getPage(originalIndex));
+            }
+
+            outputDoc.save(outputFile);
+        }
+    }
 }

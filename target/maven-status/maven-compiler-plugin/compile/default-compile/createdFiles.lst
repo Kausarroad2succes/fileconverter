@@ -1,12 +1,17 @@
 com/fileconverter/controller/PdfSplitterController.class
+com/fileconverter/controller/PdfRearrangeController$2.class
 com/fileconverter/controller/ImageResizeController$1.class
 com/fileconverter/controller/PdfSplitterController$1.class
 com/fileconverter/controller/MainController.class
 com/fileconverter/controller/ImageToPdfController$2.class
 com/fileconverter/controller/JpgPngConverterController.class
 com/fileconverter/controller/PdfMergerController$2.class
+com/fileconverter/model/PageItem.class
+com/fileconverter/controller/PdfRearrangeController.class
 com/fileconverter/controller/PdfMergerController.class
+com/fileconverter/controller/PdfRearrangeController$PageListCell.class
 com/fileconverter/controller/LoginController.class
+com/fileconverter/controller/PdfRearrangeController$1.class
 com/fileconverter/controller/PdfMergerController$1.class
 com/fileconverter/service/ImageService.class
 com/fileconverter/Main.class

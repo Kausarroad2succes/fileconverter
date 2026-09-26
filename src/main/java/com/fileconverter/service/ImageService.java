@@ -1,5 +1,8 @@
 package com.fileconverter.service;
 
+import org.apache.pdfbox.Loader;
+import org.apache.pdfbox.pdmodel.PDDocument;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -106,4 +109,6 @@ public class ImageService {
         int dot = filename.lastIndexOf('.');
         return dot > 0 ? filename.substring(dot + 1) : "png";
     }
+
+
 }

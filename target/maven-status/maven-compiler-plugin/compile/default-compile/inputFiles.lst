@@ -5,8 +5,10 @@
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/LoginController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/MainController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfMergerController.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfRearrangeController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfSplitterController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfToImageController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/WelcomeController.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/model/PageItem.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/ImageService.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/PdfService.java

@@ -10,34 +10,30 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane
-            prefHeight="650.0" prefWidth="1100.0"
-            stylesheets="@/com/fileconverter/fxml/css/main.css"
-            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.fileconverter.controller.MainController">
+<BorderPane prefHeight="650.0" prefWidth="1100.0" stylesheets="@/com/fileconverter/fxml/css/main.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileconverter.controller.MainController">
 
    <!-- LEFT SIDEBAR -->
    <left>
-      <VBox styleClass="sidebar" spacing="4.0" prefWidth="220.0">
+      <VBox prefWidth="220.0" spacing="4.0" styleClass="sidebar">
          <children>
-            <Label text="File Converter" styleClass="sidebar-title">
+            <Label styleClass="sidebar-title" text="File Converter">
                <VBox.margin><Insets bottom="20.0" left="10.0" top="10.0" /></VBox.margin>
             </Label>
 
-            <Button text="🏠  Home" styleClass="sidebar-item, sidebar-item-active" maxWidth="Infinity" />
-            <Button text="📄  PDF Merger" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openPDFMergerFromButton" />
-            <Button text="✂️  Split PDF" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openSplitPdfFromButton" />
-            <Button text="🖼️  Image to PDF" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openImageToPdfFromButton" />
-            <Button text="🔄  JPG ↔ PNG" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openJpgToPngFromButton" />
-            <Button text="📐  Image Resize" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openResizeImageFromButton" />
-            <Button text="🗂️  PDF to Image" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openPdfToImageFromButton" />
-            <Button text="🗜️  Compress Image" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openCompressImageFromButton" />
-            <Button text="🔃  Rotate/Flip" styleClass="sidebar-item" maxWidth="Infinity" onAction="#openRotateFlipFromButton" />
+            <Button maxWidth="Infinity" styleClass="sidebar-item, sidebar-item-active" text="🏠  Home" />
+            <Button maxWidth="Infinity" onAction="#openPDFMergerFromButton" styleClass="sidebar-item" text="📄  PDF Merger" />
+            <Button maxWidth="Infinity" onAction="#openSplitPdfFromButton" styleClass="sidebar-item" text="✂️  Split PDF" />
+            <Button maxWidth="Infinity" onAction="#openImageToPdfFromButton" styleClass="sidebar-item" text="🖼️  Image to PDF" />
+            <Button maxWidth="Infinity" onAction="#openJpgToPngFromButton" styleClass="sidebar-item" text="🔄  JPG ↔ PNG" />
+            <Button maxWidth="Infinity" onAction="#openResizeImageFromButton" styleClass="sidebar-item" text="📐  Image Resize" />
+            <Button maxWidth="Infinity" onAction="#openPdfToImageFromButton" styleClass="sidebar-item" text="🗂️  PDF to Image" />
+            <Button maxWidth="Infinity" onAction="#openCompressImageFromButton" styleClass="sidebar-item" text="🗜️  Compress Image" />
+            <Button maxWidth="Infinity" onAction="#openRearrangePdfPageFromButton" styleClass="sidebar-item" text="  ↔️ Rearrange Pdf Page" />
 
             <VBox VBox.vgrow="ALWAYS" />
 
-            <Button text="🕒  Recent Files" styleClass="sidebar-item" maxWidth="Infinity" />
-            <Button text="⚙️  Settings" styleClass="sidebar-item" maxWidth="Infinity">
+            <Button maxWidth="Infinity" styleClass="sidebar-item" text="🕒  Recent Files" />
+            <Button maxWidth="Infinity" styleClass="sidebar-item" text="⚙️  Settings">
                <VBox.margin><Insets bottom="10.0" /></VBox.margin>
             </Button>
          </children>
@@ -52,69 +48,69 @@
                <children>
                   <VBox spacing="4.0">
                      <children>
-                        <Label text="File Converter" styleClass="page-title" />
-                        <Label text="Convert, merge, resize and manage your files — quickly and easily." styleClass="page-subtitle" />
+                        <Label styleClass="page-title" text="File Converter" />
+                        <Label styleClass="page-subtitle" text="Convert, merge, resize and manage your files — quickly and easily." />
                      </children>
                   </VBox>
 
-                  <VBox alignment="CENTER" spacing="6.0" styleClass="drop-zone" prefHeight="160.0">
+                  <VBox alignment="CENTER" prefHeight="160.0" spacing="6.0" styleClass="drop-zone">
                      <children>
-                        <Label text="📁" style="-fx-font-size: 32px;" />
-                        <Label text="Drop files here" styleClass="drop-zone-title" />
-                        <Label text="or click to browse" styleClass="drop-zone-link" />
+                        <Label style="-fx-font-size: 32px;" text="📁" />
+                        <Label styleClass="drop-zone-title" text="Drop files here" />
+                        <Label styleClass="drop-zone-link" text="or click to browse" />
                      </children>
                   </VBox>
 
-                  <Label text="Conversion Tools" styleClass="section-title" />
+                  <Label styleClass="section-title" text="Conversion Tools" />
 
-                  <TilePane hgap="16.0" vgap="16.0" prefColumns="4">
+                  <TilePane hgap="16.0" prefColumns="4" vgap="16.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openPDFMerger" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openPDFMerger" spacing="12.0" styleClass="tool-card">
                            <children>
                               <StackPane styleClass="tool-icon, icon-purple"><children><Label text="📄" /></children></StackPane>
-                              <Label text="PDF Merger" styleClass="tool-label" />
+                              <Label styleClass="tool-label" text="PDF Merger" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openSplitPdf" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openSplitPdf" spacing="12.0" styleClass="tool-card">
                            <children>
                               <StackPane styleClass="tool-icon, icon-pink"><children><Label text="✂️" /></children></StackPane>
-                              <Label text="Split PDF" styleClass="tool-label" />
+                              <Label styleClass="tool-label" text="Split PDF" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openImageToPdf" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openImageToPdf" spacing="12.0" styleClass="tool-card">
                            <children>
                               <StackPane styleClass="tool-icon, icon-blue"><children><Label text="🖼️" /></children></StackPane>
-                              <Label text="Image to PDF" styleClass="tool-label" />
+                              <Label styleClass="tool-label" text="Image to PDF" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openJpgToPng" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openJpgToPng" spacing="12.0" styleClass="tool-card">
                            <children>
                               <StackPane styleClass="tool-icon, icon-teal"><children><Label text="🔄" /></children></StackPane>
-                              <Label text="JPG ↔ PNG" styleClass="tool-label" />
+                              <Label styleClass="tool-label" text="JPG ↔ PNG" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openResizeImage" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openResizeImage" spacing="12.0" styleClass="tool-card">
                            <children>
                               <StackPane styleClass="tool-icon, icon-green"><children><Label text="📐" /></children></StackPane>
-                              <Label text="Image Resize" styleClass="tool-label" />
+                              <Label styleClass="tool-label" text="Image Resize" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openPdfToImage" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openPdfToImage" spacing="12.0" styleClass="tool-card">
                            <children>
                               <StackPane styleClass="tool-icon, icon-yellow"><children><Label text="🗂️" /></children></StackPane>
-                              <Label text="PDF to Image" styleClass="tool-label" />
+                              <Label styleClass="tool-label" text="PDF to Image" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openCompressImage" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openCompressImage" spacing="12.0" styleClass="tool-card">
                            <children>
                               <StackPane styleClass="tool-icon, icon-teal"><children><Label text="🗜️" /></children></StackPane>
-                              <Label text="Compress Image" styleClass="tool-label" />
+                              <Label styleClass="tool-label" text="Compress Image" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER_LEFT" spacing="12.0" onMouseClicked="#openRotateFlip" styleClass="tool-card">
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openRearrangePdfPage" spacing="12.0" styleClass="tool-card">
                            <children>
-                              <StackPane styleClass="tool-icon, icon-red"><children><Label text="🔃" /></children></StackPane>
-                              <Label text="Rotate/Flip" styleClass="tool-label" />
+                              <StackPane styleClass="tool-icon, icon-red"><children><Label text="↔️" /></children></StackPane>
+                              <Label styleClass="tool-label" text="Rearrange Pdf Page" />
                            </children>
                         </HBox>
                      </children>
@@ -127,24 +123,24 @@
 
    <!-- RIGHT PANEL -->
    <right>
-      <VBox styleClass="right-panel" spacing="20.0" prefWidth="260.0" style="-fx-padding: 20;">
+      <VBox prefWidth="260.0" spacing="20.0" style="-fx-padding: 20;" styleClass="right-panel">
          <children>
             <VBox spacing="12.0" styleClass="panel-box">
                <children>
-                  <Label text="⚡ Quick Start" styleClass="panel-title" />
-                  <Label text="1. Select a tool" styleClass="step-title" />
-                  <Label text="Choose the conversion tool you need." styleClass="step-desc" wrapText="true" />
-                  <Label text="2. Add files" styleClass="step-title" />
-                  <Label text="Drag and drop or click to browse." styleClass="step-desc" wrapText="true" />
-                  <Label text="3. Convert" styleClass="step-title" />
-                  <Label text="Click Convert and download your result." styleClass="step-desc" wrapText="true" />
+                  <Label styleClass="panel-title" text="⚡ Quick Start" />
+                  <Label styleClass="step-title" text="1. Select a tool" />
+                  <Label styleClass="step-desc" text="Choose the conversion tool you need." wrapText="true" />
+                  <Label styleClass="step-title" text="2. Add files" />
+                  <Label styleClass="step-desc" text="Drag and drop or click to browse." wrapText="true" />
+                  <Label styleClass="step-title" text="3. Convert" />
+                  <Label styleClass="step-desc" text="Click Convert and download your result." wrapText="true" />
                </children>
             </VBox>
 
             <VBox spacing="10.0" styleClass="panel-box">
                <children>
-                  <Label text="🕒 Recent Files" styleClass="panel-title" />
-                  <Label text="No recent files yet" styleClass="step-desc" />
+                  <Label styleClass="panel-title" text="🕒 Recent Files" />
+                  <Label styleClass="step-desc" text="No recent files yet" />
                </children>
             </VBox>
          </children>
