@@ -2,6 +2,7 @@ package com.fileconverter.controller;
 
 import com.fileconverter.model.PageItem;
 import com.fileconverter.service.PdfService;
+import com.fileconverter.service.RecentFilesService;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -212,6 +213,7 @@ public class PdfRearrangeController {
             saveProgressBar.setManaged(false);
             saveButton.setDisable(false);
             statusLabel.setText("Saved successfully!");
+            RecentFilesService.addRecentFile(finalOutputFile.getAbsolutePath(), "Rearrange PDF Pages");
         });
 
         saveTask.setOnFailed(e -> {

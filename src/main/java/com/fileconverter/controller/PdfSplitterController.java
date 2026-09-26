@@ -1,5 +1,6 @@
 package com.fileconverter.controller;
 
+import com.fileconverter.service.RecentFilesService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -99,6 +100,7 @@ public class PdfSplitterController {
             @Override
             protected List<File> call() throws Exception {
                 return PdfService.splitPdf(finalSourceFile, ranges, finalOutputFolder);
+
             }
         };
 
@@ -114,6 +116,11 @@ public class PdfSplitterController {
             splitProgressBar.setManaged(false);
             splitButton.setDisable(false);
             statusLabel.setText("Split successful! " + splitTask.getValue().size() + " file(s) created.");
+
+            List<File> outputFiles = splitTask.getValue();
+            for (File outputFile : outputFiles) {
+                RecentFilesService.addRecentFile(outputFile.getAbsolutePath(), "Split PDF");
+            }
         });
 
         splitTask.setOnFailed(e -> {

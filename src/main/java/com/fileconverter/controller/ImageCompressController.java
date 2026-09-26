@@ -1,5 +1,6 @@
 package com.fileconverter.controller;
 
+import com.fileconverter.service.RecentFilesService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -163,8 +164,11 @@ public class ImageCompressController {
             compressProgressBar.setManaged(false);
             compressButton.setDisable(false);
             statusLabel.setText("Compressed " + compressTask.getValue().size() + " file(s) successfully!");
-        });
 
+            for (File outputFile : compressTask.getValue()) {
+                RecentFilesService.addRecentFile(outputFile.getAbsolutePath(), "Compress Image");
+            }
+        });
         compressTask.setOnFailed(e -> {
             compressProgressBar.progressProperty().unbind();
             compressProgressBar.setVisible(false);

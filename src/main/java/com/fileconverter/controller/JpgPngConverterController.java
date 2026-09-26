@@ -1,5 +1,6 @@
 package com.fileconverter.controller;
 
+import com.fileconverter.service.RecentFilesService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -161,6 +162,10 @@ public class JpgPngConverterController {
             convertProgressBar.setManaged(false);
             convertButton.setDisable(false);
             statusLabel.setText("Converted " + convertTask.getValue().size() + " file(s) successfully!");
+
+            for (File outputFile : convertTask.getValue()) {
+                RecentFilesService.addRecentFile(outputFile.getAbsolutePath(), "JPG ↔ PNG Converter");
+            }
         });
 
         convertTask.setOnFailed(e -> {

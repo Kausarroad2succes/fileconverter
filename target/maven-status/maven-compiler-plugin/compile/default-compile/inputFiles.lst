@@ -11,5 +11,8 @@
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfToImageController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/WelcomeController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/model/PageItem.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/model/RecentFileEntry.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/model/Tool.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/ImageService.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/PdfService.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/RecentFilesService.java

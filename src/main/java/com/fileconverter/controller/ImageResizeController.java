@@ -1,5 +1,6 @@
 package com.fileconverter.controller;
 
+import com.fileconverter.service.RecentFilesService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -189,6 +190,10 @@ public class ImageResizeController {
             resizeProgressBar.setManaged(false);
             resizeButton.setDisable(false);
             statusLabel.setText("Resized " + resizeTask.getValue().size() + " file(s) successfully!");
+
+            for (File outputFile : resizeTask.getValue()) {
+                RecentFilesService.addRecentFile(outputFile.getAbsolutePath(), "Image Resize");
+            }
         });
 
         resizeTask.setOnFailed(e -> {

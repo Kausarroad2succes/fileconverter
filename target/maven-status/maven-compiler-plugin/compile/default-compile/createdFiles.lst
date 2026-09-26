@@ -8,9 +8,13 @@ com/fileconverter/controller/ImageToPdfController$2.class
 com/fileconverter/controller/JpgPngConverterController.class
 com/fileconverter/controller/PdfMergerController$2.class
 com/fileconverter/model/PageItem.class
+com/fileconverter/controller/MainController$RecentFileCell.class
+com/fileconverter/model/RecentFileEntry.class
 com/fileconverter/controller/PdfRearrangeController.class
 com/fileconverter/controller/PdfMergerController.class
+com/fileconverter/model/Tool.class
 com/fileconverter/controller/PdfRearrangeController$PageListCell.class
+com/fileconverter/service/RecentFilesService.class
 com/fileconverter/controller/LoginController.class
 com/fileconverter/controller/PdfRearrangeController$1.class
 com/fileconverter/controller/PdfMergerController$1.class

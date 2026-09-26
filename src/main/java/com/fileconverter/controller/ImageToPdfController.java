@@ -1,5 +1,6 @@
 package com.fileconverter.controller;
 
+import com.fileconverter.service.RecentFilesService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -205,6 +206,7 @@ public class ImageToPdfController {
             convertProgressBar.setManaged(false);
             convertButton.setDisable(false);
             statusLabel.setText("Conversion successful!");
+            RecentFilesService.addRecentFile(targetFile.getAbsolutePath(), "Image to PDF");
         });
 
         convertTask.setOnFailed(e -> {

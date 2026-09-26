@@ -1,5 +1,6 @@
 package com.fileconverter.controller;
 
+import com.fileconverter.service.RecentFilesService;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -183,6 +184,7 @@ public class PdfMergerController {
             @Override
             protected Void call() throws Exception {
                 PdfService.mergePdfs(filesToMerge, targetFile);
+                RecentFilesService.addRecentFile(targetFile.getAbsolutePath(), "PDF Merger");
                 return null;
             }
         };
