@@ -3,6 +3,7 @@ com/fileconverter/controller/PdfRearrangeController$2.class
 com/fileconverter/controller/ImageResizeController$1.class
 com/fileconverter/controller/PdfSplitterController$1.class
 com/fileconverter/controller/MainController.class
+com/fileconverter/controller/ImageCompressController$1.class
 com/fileconverter/controller/ImageToPdfController$2.class
 com/fileconverter/controller/JpgPngConverterController.class
 com/fileconverter/controller/PdfMergerController$2.class
@@ -22,4 +23,5 @@ com/fileconverter/controller/ImageResizeController.class
 com/fileconverter/controller/ImageToPdfController$1.class
 com/fileconverter/controller/JpgPngConverterController$1.class
 com/fileconverter/controller/WelcomeController.class
+com/fileconverter/controller/ImageCompressController.class
 com/fileconverter/controller/ImageToPdfController.class

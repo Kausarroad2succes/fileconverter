@@ -3,11 +3,17 @@ package com.fileconverter.service;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
 
+import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ImageService {
@@ -110,5 +116,52 @@ public class ImageService {
         return dot > 0 ? filename.substring(dot + 1) : "png";
     }
 
+    /**
+     * Compresses a batch of images by re-encoding as JPEG at the given quality (0.0–1.0).
+     * PNGs with transparency get a white background, since JPEG has no alpha channel.
+     * Output files keep the original base name with a .jpg extension, written into outputFolder.
+     */
+    public static List<File> compressImages(List<File> imageFiles, float quality, File outputFolder) throws IOException {
+        List<File> outputFiles = new ArrayList<>();
+
+        Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("jpg");
+        if (!writers.hasNext()) {
+            throw new IOException("No JPEG writer available");
+        }
+
+        for (File imageFile : imageFiles) {
+            BufferedImage original = ImageIO.read(imageFile);
+            if (original == null) {
+                throw new IOException("Could not read image: " + imageFile.getName());
+            }
+
+            BufferedImage rgbImage = original;
+            if (original.getColorModel().hasAlpha()) {
+                rgbImage = new BufferedImage(original.getWidth(), original.getHeight(), BufferedImage.TYPE_INT_RGB);
+                Graphics2D g = rgbImage.createGraphics();
+                g.drawImage(original, 0, 0, java.awt.Color.WHITE, null);
+                g.dispose();
+            }
+
+            String baseName = stripExtension(imageFile.getName());
+            File outFile = new File(outputFolder, baseName + ".jpg");
+
+            ImageWriter writer = ImageIO.getImageWritersByFormatName("jpg").next();
+            ImageWriteParam param = writer.getDefaultWriteParam();
+            param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+            param.setCompressionQuality(quality);
+
+            try (ImageOutputStream ios = ImageIO.createImageOutputStream(outFile)) {
+                writer.setOutput(ios);
+                writer.write(null, new IIOImage(rgbImage, null, null), param);
+            } finally {
+                writer.dispose();
+            }
+
+            outputFiles.add(outFile);
+        }
+
+        return outputFiles;
+    }
 
 }

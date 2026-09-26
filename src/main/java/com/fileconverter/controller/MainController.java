@@ -46,8 +46,8 @@ public class MainController {
 
 
     @FXML
-    private void openCompressImage() {
-        System.out.println("Compress Image clicked");
+    private void openCompressImage(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/image-compress.fxml", "Compress Image");
     }
 
     @FXML
@@ -92,7 +92,9 @@ public class MainController {
 
 
     @FXML
-    private void openCompressImageFromButton() { openCompressImage(); }
+    private void openCompressImageFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/image-compress.fxml", "Compress Image");
+    }
 
 
     @FXML
