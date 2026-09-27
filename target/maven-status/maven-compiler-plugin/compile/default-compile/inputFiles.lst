@@ -9,6 +9,9 @@
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfRearrangeController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfSplitterController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfToImageController.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PdfToPptxController.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PptxPdfConverterController.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/PptxToPdfController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/SettingsController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/controller/WelcomeController.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/model/PageItem.java
@@ -17,5 +20,6 @@
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/model/Tool.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/ImageService.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/PdfService.java
+/Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/PptxService.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/RecentFilesService.java
 /Users/kausarahmmedsupto/fileconverter/src/main/java/com/fileconverter/service/RemoteConfigService.java

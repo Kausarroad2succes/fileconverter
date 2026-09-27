@@ -142,6 +142,26 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-rearrange.fxml", "Rearrange PDF Pages");
     }
 
+    @FXML
+    private void openPptxToPdf(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pptx-to-pdf.fxml", "PPTX to PDF");
+    }
+
+    @FXML
+    private void openPdfToPptx(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-pptx.fxml", "PDF to PPTX");
+    }
+
+    @FXML
+    private void openPptxToPdfFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pptx-to-pdf.fxml", "PPTX to PDF");
+    }
+
+    @FXML
+    private void openPdfToPptxFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-pptx.fxml", "PDF to PPTX");
+    }
+
     // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
     @FXML
     private void openPDFMergerFromButton(ActionEvent event) {
