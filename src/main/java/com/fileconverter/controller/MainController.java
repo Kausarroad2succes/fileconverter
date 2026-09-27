@@ -183,6 +183,11 @@ public class MainController {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-rearrange.fxml", "Rearrange PDF Pages");
     }
 
+    @FXML
+    private void openSettingsFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/settings.fxml", "Settings");
+    }
+
     // ---- Shared scene-switch logic, now takes a plain source object ----
     private void switchScene(Object source, String fxmlPath, String title) {
         try {

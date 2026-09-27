@@ -1,0 +1,122 @@
+.root {
+    -fx-background-color: #1a1a24 !important;
+}
+
+/* Catch-all fallback for any unclassed control */
+.button {
+    -fx-background-color: #2e2e3e !important;
+    -fx-text-fill: #e0e0ea !important;
+}
+.label {
+    -fx-text-fill: #e0e0ea !important;
+}
+.check-box, .radio-button {
+    -fx-text-fill: #e0e0ea !important;
+}
+.text-field, .password-field {
+    -fx-background-color: #2e2e3e !important;
+    -fx-text-fill: #e0e0ea !important;
+    -fx-prompt-text-fill: #7a7a90 !important;
+}
+
+.sidebar {
+    -fx-background-color: #14141c !important;
+    -fx-border-color: #2a2a38 !important;
+}
+.sidebar-title {
+    -fx-text-fill: #f0f0f5 !important;
+}
+.sidebar-item {
+    -fx-background-color: transparent !important;
+    -fx-text-fill: #b8b8c8 !important;
+}
+.sidebar-item:hover {
+    -fx-background-color: #22222e !important;
+}
+.sidebar-item-active {
+    -fx-background-color: #322e5e !important;
+    -fx-text-fill: #a89ef5 !important;
+}
+
+.page-title {
+    -fx-text-fill: #f0f0f5 !important;
+}
+.page-subtitle {
+    -fx-text-fill: #9494a8 !important;
+}
+.section-title {
+    -fx-text-fill: #f0f0f5 !important;
+}
+
+.drop-zone {
+    -fx-background-color: #22203a !important;
+    -fx-border-color: #443e78 !important;
+}
+.drop-zone-title {
+    -fx-text-fill: #e0e0ea !important;
+}
+.drop-zone-link {
+    -fx-text-fill: #a89ef5 !important;
+}
+
+.tool-card {
+    -fx-background-color: #22222e !important;
+}
+.tool-card:hover {
+    -fx-background-color: #282836 !important;
+}
+.tool-label {
+    -fx-text-fill: #e0e0ea !important;
+}
+
+.icon-purple { -fx-background-color: #3a3568 !important; }
+.icon-pink   { -fx-background-color: #4a2d3e !important; }
+.icon-blue   { -fx-background-color: #253a52 !important; }
+.icon-teal   { -fx-background-color: #1e3d38 !important; }
+.icon-green  { -fx-background-color: #223d20 !important; }
+.icon-yellow { -fx-background-color: #453a1e !important; }
+.icon-red    { -fx-background-color: #452424 !important; }
+
+.panel-box {
+    -fx-background-color: #22222e !important;
+}
+.panel-title {
+    -fx-text-fill: #e0e0ea !important;
+}
+.step-title {
+    -fx-text-fill: #d0d0dc !important;
+}
+.step-desc {
+    -fx-text-fill: #9494a8 !important;
+}
+.merger-banner {
+    -fx-background-color: linear-gradient(to right, #2a2650, #302850) !important;
+}
+.merger-icon {
+    -fx-background-color: #2a2a38 !important;
+}
+
+.output-label, .status-label {
+    -fx-text-fill: #d0d0dc !important;
+}
+
+.file-list {
+    -fx-background-color: #22222e !important;
+    -fx-control-inner-background: #22222e !important;
+}
+.file-list .list-cell {
+    -fx-background-color: #22222e !important;
+    -fx-text-fill: #e0e0ea !important;
+}
+.file-list .list-cell:selected {
+    -fx-background-color: #322e5e !important;
+}
+
+.action-button {
+    -fx-background-color: #2e2e3e !important;
+    -fx-text-fill: #e0e0ea !important;
+}
+.merge-button {
+    -fx-background-color: #4a3fc4 !important;
+    -fx-text-fill: #ffffff !important;
+}

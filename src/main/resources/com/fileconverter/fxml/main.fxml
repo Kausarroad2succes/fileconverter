@@ -34,7 +34,7 @@
             <VBox VBox.vgrow="ALWAYS" />
 
             <Button maxWidth="Infinity" styleClass="sidebar-item" text="🕒  Recent Files" />
-            <Button maxWidth="Infinity" styleClass="sidebar-item" text="⚙️  Settings">
+            <Button maxWidth="Infinity" onAction="#openSettingsFromButton" styleClass="sidebar-item" text="⚙️  Settings">
                <VBox.margin><Insets bottom="10.0" /></VBox.margin>
             </Button>
          </children>
