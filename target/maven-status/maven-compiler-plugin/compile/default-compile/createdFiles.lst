@@ -17,6 +17,8 @@ com/fileconverter/controller/JpgPngConverterController$1.class
 com/fileconverter/controller/WelcomeController.class
 com/fileconverter/controller/ImageCompressController.class
 com/fileconverter/controller/ImageToPdfController.class
+com/fileconverter/controller/PdfToDocxController$1.class
+com/fileconverter/controller/PdfToDocxController.class
 com/fileconverter/controller/PptxToPdfController$1.class
 com/fileconverter/controller/ImageResizeController$1.class
 com/fileconverter/controller/PdfSplitterController$1.class
@@ -34,9 +36,11 @@ com/fileconverter/controller/PdfRearrangeController$1.class
 com/fileconverter/controller/SettingsController$1.class
 com/fileconverter/controller/PdfMergerController$1.class
 com/fileconverter/service/ImageService.class
+com/fileconverter/controller/DocxToPdfController.class
 com/fileconverter/controller/PdfToImageController.class
 com/fileconverter/service/PptxService.class
 com/fileconverter/model/ThemeState.class
 com/fileconverter/controller/SettingsController.class
 com/fileconverter/service/PdfService.class
 com/fileconverter/controller/ImageToPdfController$1.class
+com/fileconverter/controller/DocxToPdfController$1.class

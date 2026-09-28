@@ -32,6 +32,8 @@
             <Button maxWidth="Infinity" onAction="#openRearrangePdfPageFromButton" styleClass="sidebar-item" text="  ↔️ Rearrange Pdf Page" />
             <Button maxWidth="Infinity" onAction="#openPptxToPdfFromButton" styleClass="sidebar-item" text="📽️  PPTX to PDF" />
             <Button maxWidth="Infinity" onAction="#openPdfToPptxFromButton" styleClass="sidebar-item" text="📄  PDF to PPTX" />
+            <Button maxWidth="Infinity" onAction="#openPdfToDocxFromButton" styleClass="sidebar-item" text="📝  PDF to Word" />
+            <Button maxWidth="Infinity" onAction="#openDocxToPdfFromButton" styleClass="sidebar-item" text="📄  Word to PDF" />
 
             <VBox VBox.vgrow="ALWAYS" />
 
@@ -126,6 +128,18 @@
                            <children>
                               <StackPane styleClass="tool-icon, icon-blue"><children><Label text="📄" /></children></StackPane>
                               <Label styleClass="tool-label" text="PDF to PPTX" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openPdfToDocx" spacing="12.0" styleClass="tool-card">
+                           <children>
+                              <StackPane styleClass="tool-icon, icon-purple"><children><Label text="📝" /></children></StackPane>
+                              <Label styleClass="tool-label" text="PDF to Word" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" onMouseClicked="#openDocxToPdf" spacing="12.0" styleClass="tool-card">
+                           <children>
+                              <StackPane styleClass="tool-icon, icon-green"><children><Label text="📄" /></children></StackPane>
+                              <Label styleClass="tool-label" text="Word to PDF" />
                            </children>
                         </HBox>
                      </children>

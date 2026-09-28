@@ -161,6 +161,27 @@ public class MainController {
     private void openPdfToPptxFromButton(ActionEvent event) {
         switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-pptx.fxml", "PDF to PPTX");
     }
+    @FXML
+    private void openPdfToDocx(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-docx.fxml", "PDF to Word");
+    }
+
+    @FXML
+    private void openDocxToPdf(MouseEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/docx-to-pdf.fxml", "Word to PDF");
+    }
+
+    @FXML
+    private void openPdfToDocxFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/pdf-to-docx.fxml", "PDF to Word");
+    }
+
+    @FXML
+    private void openDocxToPdfFromButton(ActionEvent event) {
+        switchScene(event.getSource(), "/com/fileconverter/fxml/docx-to-pdf.fxml", "Word to PDF");
+    }
+
+
 
     // ---- Sidebar button handlers (ActionEvent) — just call the same logic ----
     @FXML

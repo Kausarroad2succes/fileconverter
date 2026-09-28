@@ -7,12 +7,22 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.poi.xwpf.usermodel.BreakType;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
@@ -146,6 +156,125 @@ public class PdfService {
             }
 
             outputDoc.save(outputFile);
+        }
+    }
+    public static void docxToPdf(File sourceDocx, File outputPdf) throws IOException {
+        try (FileInputStream fis = new FileInputStream(sourceDocx);
+             XWPFDocument docxDoc = new XWPFDocument(fis);
+             PDDocument pdfDoc = new PDDocument()) {
+
+            PDFont font = new PDType1Font(Standard14Fonts.FontName.HELVETICA);
+            float fontSize = 11f;
+            float leading = 14f;
+            float margin = 50f;
+
+            PDPage page = new PDPage(PDRectangle.LETTER);
+            pdfDoc.addPage(page);
+            float pageWidth = page.getMediaBox().getWidth();
+            float pageHeight = page.getMediaBox().getHeight();
+            float maxTextWidth = pageWidth - 2 * margin;
+
+            PDPageContentStream contentStream = new PDPageContentStream(pdfDoc, page);
+            contentStream.beginText();
+            contentStream.setFont(font, fontSize);
+            contentStream.newLineAtOffset(margin, pageHeight - margin);
+
+            float yPosition = pageHeight - margin;
+
+            for (XWPFParagraph paragraph : docxDoc.getParagraphs()) {
+                String text = paragraph.getText();
+                if (text == null) {
+                    text = "";
+                }
+
+                List<String> wrappedLines = wrapText(text, font, fontSize, maxTextWidth);
+                if (wrappedLines.isEmpty()) {
+                    wrappedLines.add("");
+                }
+
+                for (String line : wrappedLines) {
+                    if (yPosition - leading < margin) {
+                        contentStream.endText();
+                        contentStream.close();
+
+                        page = new PDPage(PDRectangle.LETTER);
+                        pdfDoc.addPage(page);
+                        yPosition = pageHeight - margin;
+
+                        contentStream = new PDPageContentStream(pdfDoc, page);
+                        contentStream.beginText();
+                        contentStream.setFont(font, fontSize);
+                        contentStream.newLineAtOffset(margin, yPosition);
+                    }
+
+                    contentStream.showText(line);
+                    contentStream.newLineAtOffset(0, -leading);
+                    yPosition -= leading;
+                }
+            }
+
+            contentStream.endText();
+            contentStream.close();
+
+            pdfDoc.save(outputPdf);
+        }
+    }
+
+    private static List<String> wrapText(String text, PDFont font, float fontSize, float maxWidth) throws IOException {
+        List<String> lines = new ArrayList<>();
+        if (text.isEmpty()) {
+            return lines;
+        }
+
+        String[] words = text.split(" ");
+        StringBuilder currentLine = new StringBuilder();
+
+        for (String word : words) {
+            String candidate = currentLine.isEmpty() ? word : currentLine + " " + word;
+            float width = font.getStringWidth(candidate) / 1000 * fontSize;
+
+            if (width > maxWidth && !currentLine.isEmpty()) {
+                lines.add(currentLine.toString());
+                currentLine = new StringBuilder(word);
+            } else {
+                currentLine = new StringBuilder(candidate);
+            }
+        }
+
+        if (!currentLine.isEmpty()) {
+            lines.add(currentLine.toString());
+        }
+
+        return lines;
+    }
+
+    public static void pdfToDocx(File sourceFile, File outputFile) throws IOException {
+        try (PDDocument pdfDoc = Loader.loadPDF(sourceFile);
+             XWPFDocument docxDoc = new XWPFDocument()) {
+
+            PDFTextStripper stripper = new PDFTextStripper();
+            int totalPages = pdfDoc.getNumberOfPages();
+
+            for (int page = 1; page <= totalPages; page++) {
+                stripper.setStartPage(page);
+                stripper.setEndPage(page);
+                String pageText = stripper.getText(pdfDoc);
+
+                for (String line : pageText.split("\\r?\\n")) {
+                    XWPFParagraph paragraph = docxDoc.createParagraph();
+                    XWPFRun run = paragraph.createRun();
+                    run.setText(line);
+                }
+
+                if (page < totalPages) {
+                    XWPFParagraph pageBreak = docxDoc.createParagraph();
+                    pageBreak.createRun().addBreak(BreakType.PAGE);
+                }
+            }
+
+            try (FileOutputStream out = new FileOutputStream(outputFile)) {
+                docxDoc.write(out);
+            }
         }
     }
 }
